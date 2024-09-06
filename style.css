@@ -68,3 +68,65 @@ body {
 .dark-mode .current-weather {
     background: linear-gradient(135deg, #232931, #393e46);
 }
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.9;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px){
+    .input-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .input-group-append {
+        margin-top: 10px;
+    }
+    .current-weather {
+        padding: 2rem;
+    }
+    .temperature, .weather-icon, .additional-info {
+        flex: 1 1 100%;
+        text-align: center;
+    }
+    .d-flex {
+        flex-direction: column;
+    }
+    .forecast-item img, .hour-item img {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media (max-width: 576px){
+    .container {
+        padding: 1rem;
+    }
+
+    .current-weather {
+        padding: 1rem;
+    }
+    .temperature, .weather-icon, .additional-info {
+        flex: 1 1 100%;
+    }
+
+    .forecast-item img, .hour-item img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .btn-gradient, .btn-outline-light {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+    }
+}
