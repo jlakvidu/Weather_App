@@ -1,10 +1,10 @@
 body {
-    background-color: #c7ecee;
+    background-color: #dff9fb;
     font-family: 'Arial', sans-serif;
 }
 
 .custom-bg {
-    background: linear-gradient(to right, #7efff5, #6dd5fa);
+    background: linear-gradient(to right, #6dd5fa, #ffffff);
 }
 
 .current-weather {
