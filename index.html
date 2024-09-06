@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Dashboard</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="container mt-4 p-4 rounded shadow-lg custom-bg">
+    
+    <header class="d-flex justify-content-between align-items-center mb-4">
+      <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="darkModeToggle">
+        <label class="custom-control-label" for="darkModeToggle">Dark Mode</label>
+      </div>
+      <div class="input-group w-50">
+        <input type="text" class="form-control rounded-start" id="search" placeholder="Search for a city or country...">
+        <div class="input-group-append">
+          <button class="btn btn-gradient" id="searchButton">Search</button>
+          <button class="btn btn-outline-light ml-2" id="locationButton">Current Location</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="current-weather text-white rounded p-4 mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h1 id="cityName" class="display-4 text-shadow">Athens</h1>
+          <div class="text-right">
+            <h2 id="time" class="h1 mb-1 text-shadow">09:03</h2>
+            <p id="date" class="lead">Thursday, 31 Aug</p>
+          </div>
+        </div>
+        <div class="d-flex justify-content-around align-items-center">
+          <div class="temperature text-center">
+            <h2 id="temperature" class="display-2 text-shadow">24°C</h2>
+            <p>Feels like: <span id="feelsLike">22°C</span></p>
+          </div>
+          <div class="weather-icon text-center">
+            <img src="sunny.png" alt="Weather Icon" id="weatherIcon" class="img-fluid mb-2 shadow-icon">
+            <h3 id="weatherCondition" class="h4 text-shadow">Sunny</h3>
+          </div>
+          <div class="additional-info">
+            <p>Humidity: <span id="humidity">41%</span></p>
+            <p>Wind Speed: <span id="windSpeed">2 km/h</span></p>
+            <p>Pressure: <span id="pressure">997 hPa</span></p>
+            <p>Sunrise: <span id="sunrise">06:37 AM</span></p>
+            <p>Sunset: <span id="sunset">20:37 PM</span></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="forecast">
+        <div class="five-days-forecast row text-center mb-4">
+          <h3 class="col-12 text-secondary mb-3">5 Days Forecast</h3>
+        </div>
+
+        <div class="hourly-forecast row text-center">
+          <h3 class="col-12 text-secondary mb-3">Hourly Forecast</h3>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

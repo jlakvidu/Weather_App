@@ -1,0 +1,70 @@
+body {
+    background-color: #e9f7fe;
+    font-family: 'Arial', sans-serif;
+}
+
+.custom-bg {
+    background: linear-gradient(to right, #6dd5fa, #ffffff);
+}
+
+.current-weather {
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    animation: pulse 2s infinite;
+}
+
+.text-shadow {
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.shadow-icon {
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.bg-gradient {
+    background: linear-gradient(to bottom right, #ffffff, #d4e6f1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.bg-gradient:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.forecast-item img, .hour-item img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    transition: transform 0.3s, filter 0.3s;
+}
+
+.forecast-item img:hover, .hour-item img:hover {
+    transform: scale(1.2);
+    filter: brightness(1.2);
+}
+
+.btn-gradient {
+    background: linear-gradient(45deg, #1d8cf8, #3358f4);
+    border: none;
+    color: #ffffff;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-gradient:hover {
+    background: linear-gradient(45deg, #3358f4, #1d8cf8);
+    color: #ffffff;
+    transform: scale(1.05);
+}
+
+.custom-control-label, button {
+    cursor: pointer;
+}
+
+.dark-mode {
+    background-color: #2e3b4e;
+    color: #f8f9fa;
+}
+
+.dark-mode .current-weather {
+    background: linear-gradient(135deg, #232931, #393e46);
+}
