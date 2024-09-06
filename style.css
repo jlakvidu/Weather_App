@@ -1,10 +1,10 @@
 body {
-    background-color: #e9f7fe;
+    background-color: #c7ecee;
     font-family: 'Arial', sans-serif;
 }
 
 .custom-bg {
-    background: linear-gradient(to right, #6dd5fa, #ffffff);
+    background: linear-gradient(to right, #7efff5, #6dd5fa);
 }
 
 .current-weather {
@@ -19,6 +19,10 @@ body {
 
 .shadow-icon {
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+#weatherIcon{
+    width: 150px;
 }
 
 .bg-gradient {
@@ -61,12 +65,12 @@ body {
 }
 
 .dark-mode {
-    background-color: #2e3b4e;
+    background-color: #718093;
     color: #f8f9fa;
 }
 
 .dark-mode .current-weather {
-    background: linear-gradient(135deg, #232931, #393e46);
+    background: linear-gradient(135deg, #c2c2c2, #0a0a0a);
 }
 
 @keyframes pulse {
