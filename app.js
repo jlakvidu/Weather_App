@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const apiKey = "fd091c84020448a584141337240609";
+    const apiKey = "32fdc8caf5b443699ef94924240410";
     const timeZoneApiKey = "GPF627FUYAH0";
     const searchButton = document.getElementById("searchButton");
     const locationButton = document.getElementById("locationButton");
@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const city = document.getElementById("search").value;   
         if (city) fetchWeatherData(city);
     });
-    
 
     locationButton.addEventListener("click", () => {
         if (navigator.geolocation) {
@@ -26,7 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-
     darkModeToggle.addEventListener("change", () => {
         document.body.classList.toggle("dark-mode", darkModeToggle.checked);
     });
@@ -36,15 +34,25 @@ document.addEventListener("DOMContentLoaded", function () {
         weatherApiURL += city ? `&q=${city}` : `&q=${lat},${lon}`;
 
         fetch(weatherApiURL)
-            .then((response) => response.json())
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Location not found");
+                }
+                return response.json();
+            })
             .then((data) => {
                 updateUI(data);
                 const { lat, lon } = data.location;
                 fetchTimeZone(lat, lon);
             })
-            .catch((error) => console.error("Error fetching weather data:", error));
+            .catch((error) => {
+                if (error.message === "Location not found") {
+                    alert("Invalid location. Please enter a valid country, city, or village.");
+                } else {
+                    console.error("Error fetching weather data:", error);
+                }
+            });
     }
-
 
     function fetchTimeZone(lat, lon) {
         const timezoneApiURL = `https://api.timezonedb.com/v2.1/get-time-zone?key=${timeZoneApiKey}&format=json&by=position&lat=${lat}&lng=${lon}`;
@@ -101,12 +109,10 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-
     function updateTime(data) {
         const date = new Date(data.formatted);
         const options = { weekday: "long", day: "numeric", month: "short" };
         document.getElementById("date").textContent = date.toLocaleDateString("en-US", options);
         document.getElementById("time").textContent = date.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" });
     }
-
 });

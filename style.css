@@ -1,16 +1,40 @@
 body {
-    background-color: #dff9fb;
+    background-image: url('/img/back.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
     font-family: 'Arial', sans-serif;
+    filter: brightness(0.8);
 }
 
 .custom-bg {
-    background: linear-gradient(to right, #6dd5fa, #ffffff);
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
 }
 
 .current-weather {
-    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    background: rgba(79, 172, 254, 0.8);
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
     animation: pulse 2s infinite;
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+.forecast-item {
+    background: rgba(79, 172, 254, 0.6);
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 0.5rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.forecast-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .text-shadow {
@@ -21,7 +45,7 @@ body {
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
 }
 
-#weatherIcon{
+#weatherIcon {
     width: 150px;
 }
 
@@ -35,28 +59,17 @@ body {
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.forecast-item img, .hour-item img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    transition: transform 0.3s, filter 0.3s;
-}
-
-.forecast-item img:hover, .hour-item img:hover {
-    transform: scale(1.2);
-    filter: brightness(1.2);
-}
-
 .btn-gradient {
     background: linear-gradient(45deg, #1d8cf8, #3358f4);
     border: none;
     color: #ffffff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px; 
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .btn-gradient:hover {
     background: linear-gradient(45deg, #3358f4, #1d8cf8);
-    color: #ffffff;
     transform: scale(1.05);
 }
 
@@ -70,7 +83,7 @@ body {
 }
 
 .dark-mode .current-weather {
-    background: linear-gradient(135deg, #c2c2c2, #0a0a0a);
+    background: rgba(194, 194, 194, 0.9);
 }
 
 @keyframes pulse {
@@ -88,7 +101,7 @@ body {
     }
 }
 
-@media (max-width: 768px){
+@media (max-width: 768px) {
     .input-group {
         flex-direction: column;
         align-items: stretch;
@@ -112,7 +125,7 @@ body {
     }
 }
 
-@media (max-width: 576px){
+@media (max-width: 576px) {
     .container {
         padding: 1rem;
     }
