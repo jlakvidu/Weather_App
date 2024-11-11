@@ -9,32 +9,144 @@ body {
 }
 
 .custom-bg {
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
     backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .current-weather {
-    background: rgba(79, 172, 254, 0.8);
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-    animation: pulse 2s infinite;
-    border-radius: 10px;
-    padding: 1rem;
+    background: linear-gradient(120deg, 
+        rgba(64, 169, 255, 0.9),  
+        rgba(0, 242, 254, 0.8), 
+        rgba(78, 84, 200, 0.8), 
+        rgba(147, 197, 253, 0.8) 
+    );
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    animation: 
+        floatingCard 6s ease-in-out infinite,
+        glowingBorder 4s ease-in-out infinite,
+        backgroundShift 10s ease-in-out infinite;
+    background-size: 300% 300%;
+    position: relative;
+    overflow: hidden;
+}
+
+.current-weather::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.05),
+        rgba(255, 255, 255, 0.1));
+    animation: gradientShift 8s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.current-weather::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(147, 197, 253, 0.1) 25%,
+        transparent 50%
+    );
+    animation: shimmer 12s linear infinite;
+    pointer-events: none;
 }
 
 .forecast-item {
-    background: rgba(79, 172, 254, 0.6);
-    border-radius: 10px;
-    padding: 1rem;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    margin: 0.5rem;
-    transition: transform 0.3s, box-shadow 0.3s;
+    background: linear-gradient(135deg, 
+        rgba(64, 169, 255, 0.7),  
+        rgba(0, 242, 254, 0.6), 
+        rgba(78, 84, 200, 0.6)  
+    );
+    border-radius: 15px;
+    padding: 1.2rem;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.25);
+    margin: 0.7rem;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    animation: 
+        fadeIn 0.5s ease-out,
+        floatingCard 6s ease-in-out infinite;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.forecast-item::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(147, 197, 253, 0.1) 25%,
+        transparent 50%
+    );
+    animation: shimmer 12s linear infinite;
+    pointer-events: none;
+}
+
+.forecast-item .temperature {
+    background: linear-gradient(45deg, 
+        #FFD54F, 
+        #FFA726,  
+        #FF7043  
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    animation: gradientText 5s ease infinite;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.forecast-item .date {
+    background: linear-gradient(45deg, 
+        #A5D6A7, 
+        #80CBC4,  
+        #4DB6AC   
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    animation: gradientText 5s ease infinite;
 }
 
 .forecast-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 45px rgba(31, 38, 135, 0.45);
+    background: linear-gradient(135deg, 
+        rgba(78, 84, 200, 0.7),  
+        rgba(64, 169, 255, 0.7),
+        rgba(0, 242, 254, 0.6)   
+    );
+}
+
+.forecast-item img {
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+    transition: transform 0.3s ease;
+    animation: weatherIconFloat 6s ease-in-out infinite;
+}
+
+.forecast-item:hover img {
+    transform: rotate(10deg) scale(1.1);
 }
 
 .text-shadow {
@@ -60,17 +172,18 @@ body {
 }
 
 .btn-gradient {
-    background: linear-gradient(45deg, #1d8cf8, #3358f4);
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
     border: none;
     color: #ffffff;
     padding: 0.75rem 1.5rem;
     border-radius: 25px; 
     transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .btn-gradient:hover {
-    background: linear-gradient(45deg, #3358f4, #1d8cf8);
-    transform: scale(1.05);
+    background: linear-gradient(45deg, #2575fc, #6a11cb);
+    transform: translateY(-2px);
 }
 
 .custom-control-label, button {
@@ -78,12 +191,27 @@ body {
 }
 
 .dark-mode {
-    background-color: #718093;
+    background-color: #0f172a;
     color: #f8f9fa;
 }
 
 .dark-mode .current-weather {
-    background: rgba(194, 194, 194, 0.9);
+    background: linear-gradient(120deg, 
+        rgba(30, 41, 59, 0.9),
+        rgba(44, 62, 80, 0.8),
+        rgba(52, 73, 94, 0.8));
+    animation: 
+        floatingCard 6s ease-in-out infinite,
+        glowingBorder 4s ease-in-out infinite,
+        darkBackgroundShift 10s ease-in-out infinite;
+}
+
+.dark-mode .forecast-item {
+    background: linear-gradient(135deg,
+        rgba(30, 41, 59, 0.8),
+        rgba(44, 62, 80, 0.7),
+        rgba(52, 73, 94, 0.7)
+    );
 }
 
 @keyframes pulse {
@@ -99,6 +227,33 @@ body {
         transform: scale(1);
         opacity: 1;
     }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 @media (max-width: 768px) {
@@ -146,4 +301,310 @@ body {
         font-size: 0.9rem;
         padding: 0.5rem 1rem;
     }
+}
+
+/* New Weather Status Indicators */
+.weather-status {
+    background: linear-gradient(135deg,
+        rgba(64, 169, 255, 0.8),  
+        rgba(147, 197, 253, 0.8)
+    );
+    padding: 0.8rem 1.5rem;
+    border-radius: 20px;
+    font-weight: 600;
+    margin: 0.5rem 0;
+    box-shadow: 0 0 15px rgba(64, 169, 255, 0.3);
+    animation: softGlow 2s ease-in-out infinite;
+}
+
+@keyframes softGlow {
+    0%, 100% {
+        box-shadow: 0 0 15px rgba(64, 169, 255, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(147, 197, 253, 0.5);
+    }
+}
+
+.status-sunny {
+    background: linear-gradient(135deg, #FF8C00, #FFD700);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(255, 140, 0, 0.5);
+}
+
+.status-rainy {
+    background: linear-gradient(135deg, #4169E1, #00BFFF);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(65, 105, 225, 0.5);
+}
+
+.status-cloudy {
+    background: linear-gradient(135deg, #708090, #B8C6DB);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(112, 128, 144, 0.5);
+}
+
+.status-stormy {
+    background: linear-gradient(135deg, #483D8B, #4B0082);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(72, 61, 139, 0.5);
+}
+
+.weather-icon {
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+    transition: transform 0.3s ease;
+}
+
+.weather-icon:hover {
+    transform: rotate(10deg) scale(1.1);
+}
+
+.temperature-value {
+    font-size: 4rem;
+    font-weight: 800;
+    background: linear-gradient(45deg, 
+        #64B5F6, 
+        #81D4FA,  
+        #4FC3F7  
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientText 5s ease infinite;
+}
+
+.loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+    margin: auto;
+}
+
+.weather-metric {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 1rem;
+    border-radius: 15px;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+.weather-metric:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.input-group .form-control {
+    border-radius: 25px 0 0 25px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    padding: 0.75rem 1.5rem;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes weatherIconFloat {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-5px) rotate(5deg); }
+}
+
+@keyframes gradientText {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+}
+
+.hover-scale {
+    transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+    transform: scale(1.05);
+}
+
+@keyframes floatingCard {
+    0% {
+        transform: translateY(0px) translateX(0px);
+        box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+    }
+    50% {
+        transform: translateY(-10px) translateX(5px);
+        box-shadow: 0 15px 45px rgba(31, 38, 135, 0.45);
+    }
+    100% {
+        transform: translateY(0px) translateX(0px);
+        box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+    }
+}
+
+@keyframes glowingBorder {
+    0% {
+        border-color: rgba(255, 255, 255, 0.18);
+        box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+    }
+    50% {
+        border-color: rgba(255, 255, 255, 0.5);
+        box-shadow: 0 8px 32px rgba(31, 38, 135, 0.6),
+                    0 0 20px rgba(255, 255, 255, 0.3);
+    }
+    100% {
+        border-color: rgba(255, 255, 255, 0.18);
+        box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+    }
+}
+
+@keyframes backgroundShift {
+    0% {
+        background: linear-gradient(120deg, 
+            rgba(64, 169, 255, 0.9),  
+            rgba(0, 242, 254, 0.8),   
+            rgba(78, 84, 200, 0.8),  
+            rgba(147, 197, 253, 0.8)
+        );
+    }
+    50% {
+        background: linear-gradient(120deg, 
+            rgba(147, 197, 253, 0.8), 
+            rgba(64, 169, 255, 0.9), 
+            rgba(0, 242, 254, 0.8),   
+            rgba(78, 84, 200, 0.8)    
+        );
+    }
+    100% {
+        background: linear-gradient(120deg, 
+            rgba(64, 169, 255, 0.9),  
+            rgba(0, 242, 254, 0.8), 
+            rgba(78, 84, 200, 0.8),   
+            rgba(147, 197, 253, 0.8)  
+        );
+    }
+}
+
+.current-weather::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.05),
+        rgba(255, 255, 255, 0.1));
+    animation: gradientShift 8s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.current-weather::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(147, 197, 253, 0.1) 25%,
+        transparent 50%
+    );
+    animation: shimmer 12s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.dark-mode .current-weather {
+    animation: 
+        floatingCard 6s ease-in-out infinite,
+        glowingBorder 4s ease-in-out infinite,
+        darkBackgroundShift 10s ease-in-out infinite;
+}
+
+@keyframes darkBackgroundShift {
+    0% {
+        background: linear-gradient(120deg, 
+            rgba(30, 41, 59, 0.9),
+            rgba(44, 62, 80, 0.8),
+            rgba(52, 73, 94, 0.8));
+    }
+    50% {
+        background: linear-gradient(120deg, 
+            rgba(52, 73, 94, 0.8),
+            rgba(30, 41, 59, 0.9),
+            rgba(44, 62, 80, 0.8));
+    }
+    100% {
+        background: linear-gradient(120deg, 
+            rgba(30, 41, 59, 0.9),
+            rgba(44, 62, 80, 0.8),
+            rgba(52, 73, 94, 0.8));
+    }
+}
+
+.animate-hover {
+    transition: all 0.3s ease;
+}
+
+.animate-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 45px rgba(31, 38, 135, 0.45);
+}
+
+.glow-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.glow-effect::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.1) 0%,
+        transparent 50%
+    );
+    animation: shimmer 12s linear infinite;
+}
+
+.glass-container {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.05)
+    );
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.dark-mode .custom-bg {
+    background: rgba(15, 23, 42, 0.25);
+    backdrop-filter: blur(8px);
 }

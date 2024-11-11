@@ -15,10 +15,9 @@ document.addEventListener("DOMContentLoaded", function () {
             navigator.geolocation.getCurrentPosition((position) => {
                 const { latitude, longitude } = position.coords;
                 fetchWeatherData(null, latitude, longitude);
-                // Save coordinates in session storage for use in map.html
                 sessionStorage.setItem('latitude', latitude);
                 sessionStorage.setItem('longitude', longitude);
-                window.location.href = "map.html"; // Redirect to map page
+                window.location.href = "map.html"; 
             });
         } else {
             alert("Geolocation is not supported by this browser.");
@@ -79,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
         weatherIcon.src = `https:${iconCode}`;
 
         const forecastItems = document.querySelector(".five-days-forecast");
-        forecastItems.innerHTML = ""; // Clear previous forecast items
+        forecastItems.innerHTML = "";
 
         data.forecast.forecastday.forEach((day, index) => {
             if (index < 5) {
@@ -95,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         const hourlyItems = document.querySelector(".hourly-forecast");
-        hourlyItems.innerHTML = ""; // Clear previous hourly forecast items
+        hourlyItems.innerHTML = "";
 
         data.forecast.forecastday[0].hour.slice(0, 5).forEach((hour) => {
             const item = document.createElement("div");
